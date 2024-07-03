@@ -166,6 +166,7 @@ class CacheTransformer(kserve.Model):
             "features": self.feature_refs,
             "entities": self.buildEntityRow(inputs),
             "full_feature_names": True,
+            "allow_cache": not self.force_recompute,  # Use cache if force_recompute is False
         }
         request_url = (
             "{0}/get-online-features".format(self.feast_serving_url)
